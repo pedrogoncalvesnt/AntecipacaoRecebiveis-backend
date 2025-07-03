@@ -17,6 +17,7 @@ public class Empresa
     public decimal FaturamentoMensal { get; set; }
     public RamoAtividade Ramo { get; set; }
     public decimal Limite => GetLimite();
+
     public decimal GetLimite()
     {
         var limite = 0m;

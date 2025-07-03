@@ -1,0 +1,16 @@
+C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Application\bin\Debug\net8.0\AntecipacaoRecebiveis.Application.deps.json
+C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Application\bin\Debug\net8.0\AntecipacaoRecebiveis.Application.dll
+C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Application\bin\Debug\net8.0\AntecipacaoRecebiveis.Application.pdb
+C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Application\bin\Debug\net8.0\AntecipacaoRecebiveis.Domain.dll
+C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Application\bin\Debug\net8.0\AntecipacaoRecebiveis.Domain.pdb
+C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Application\obj\Debug\net8.0\AntecipacaoRecebiveis.Application.csproj.AssemblyReference.cache
+C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Application\obj\Debug\net8.0\AntecipacaoRecebiveis.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Application\obj\Debug\net8.0\AntecipacaoRecebiveis.Application.AssemblyInfoInputs.cache
+C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Application\obj\Debug\net8.0\AntecipacaoRecebiveis.Application.AssemblyInfo.cs
+C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Application\obj\Debug\net8.0\AntecipacaoRecebiveis.Application.csproj.CoreCompileInputs.cache
+C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Application\obj\Debug\net8.0\AntecipacaoRecebiveis.Application.sourcelink.json
+C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Application\obj\Debug\net8.0\Antecipa.66F4B553.Up2Date
+C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Application\obj\Debug\net8.0\AntecipacaoRecebiveis.Application.dll
+C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Application\obj\Debug\net8.0\refint\AntecipacaoRecebiveis.Application.dll
+C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Application\obj\Debug\net8.0\AntecipacaoRecebiveis.Application.pdb
+C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Application\obj\Debug\net8.0\ref\AntecipacaoRecebiveis.Application.dll

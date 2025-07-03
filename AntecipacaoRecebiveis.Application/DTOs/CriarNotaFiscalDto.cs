@@ -2,7 +2,7 @@
 
 public class CriarNotaFiscalDto
 {
-    public string NumeroNotaFiscal { get; set; } = string.Empty;
+    public string? Numero { get; set; }
     public decimal Valor { get; set; }
     public DateTime DataVencimento { get; set; }
 }

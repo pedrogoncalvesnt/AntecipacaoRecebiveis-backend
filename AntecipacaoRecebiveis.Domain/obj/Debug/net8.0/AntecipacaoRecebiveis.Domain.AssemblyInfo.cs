@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AntecipacaoRecebiveis.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+94229cf52ff63f3fa7ed39d9ebd57507d7592950")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+035f3db22ca88a3aaf5d73f26463f3f2c4169edf")]
 [assembly: System.Reflection.AssemblyProductAttribute("AntecipacaoRecebiveis.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AntecipacaoRecebiveis.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
