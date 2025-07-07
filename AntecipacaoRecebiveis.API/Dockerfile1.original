@@ -15,7 +15,6 @@ WORKDIR /src
 COPY ["AntecipacaoRecebiveis.API/AntecipacaoRecebiveis.API.csproj", "AntecipacaoRecebiveis.API/"]
 COPY ["AntecipacaoRecebiveis.Application/AntecipacaoRecebiveis.Application.csproj", "AntecipacaoRecebiveis.Application/"]
 COPY ["AntecipacaoRecebiveis.Domain/AntecipacaoRecebiveis.Domain.csproj", "AntecipacaoRecebiveis.Domain/"]
-COPY ["AntecipacaoRecebiveis.Infrastructure/AntecipacaoRecebiveis.Infrastructure.csproj", "AntecipacaoRecebiveis.Infrastructure/"]
 RUN dotnet restore "./AntecipacaoRecebiveis.API/AntecipacaoRecebiveis.API.csproj"
 COPY . .
 WORKDIR "/src/AntecipacaoRecebiveis.API"

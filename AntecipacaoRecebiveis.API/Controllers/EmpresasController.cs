@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AntecipacaoRecebiveis.Domain.DTOs;
+using AntecipacaoRecebiveis.Domain.Interfaces.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AntecipacaoRecebiveis.API.Controllers;
 
@@ -6,11 +8,27 @@ namespace AntecipacaoRecebiveis.API.Controllers;
 [Route("api/empresas")]
 public class EmpresasController : ControllerBase
 {
-    [HttpGet]
-    public IActionResult Get()
+    private readonly IEmpresaService _empresaService;
+
+    public EmpresasController(IEmpresaService empresaService)
     {
-        // Lógica para obter a lista de produtos
-        var produtos = new[] { "Produto 1", "Produto 2" };
-        return Ok(produtos); // Retorna um status 200 OK com a lista de produtos
+        _empresaService = empresaService;
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CadastraEmpresa([FromBody] CriarEmpresaDto dto)
+    {
+        var empresa = await _empresaService.CriarEmpresa(dto);
+        return CreatedAtAction(nameof(ObterEmpresaPorId), new { id = empresa.Id }, empresa);
+    }
+
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> ObterEmpresaPorId(Guid id)
+    {
+        var empresa = await _empresaService.ObterEmpresaPorId(id);
+        if (empresa == null)
+            return NotFound();
+
+        return Ok(empresa);
     }
 }

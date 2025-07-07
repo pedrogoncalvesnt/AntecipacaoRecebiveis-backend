@@ -1,4 +1,4 @@
-﻿namespace AntecipacaoRecebiveis.Application.DTOs;
+﻿namespace AntecipacaoRecebiveis.Domain.DTOs;
 public class EmpresaDto
 {
     public Guid Id { get; set; }

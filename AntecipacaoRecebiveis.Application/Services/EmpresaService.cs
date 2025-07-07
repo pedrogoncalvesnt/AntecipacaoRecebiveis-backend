@@ -1,10 +1,12 @@
-﻿using AntecipacaoRecebiveis.Application.DTOs;
+﻿using AntecipacaoRecebiveis.Domain.DTOs;
 using AntecipacaoRecebiveis.Domain.Entities;
 using AntecipacaoRecebiveis.Domain.Interfaces.Data;
 using AntecipacaoRecebiveis.Domain.Interfaces.Repositories;
+using AntecipacaoRecebiveis.Domain.Interfaces.Services;
 
 namespace AntecipacaoRecebiveis.Application.Services;
-public class EmpresaService
+
+public class EmpresaService : IEmpresaService
 {
     private readonly IEmpresaRepository _empresaRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -16,12 +18,16 @@ public class EmpresaService
 
     public async Task<EmpresaDto> CriarEmpresa(CriarEmpresaDto dto)
     {
+
+        if (!Enum.IsDefined(typeof(RamoAtividade), dto.Ramo))
+            throw new ArgumentException("Ramo inválido");
+
         var empresa = new Empresa(
-            Guid.NewGuid(), // Provide the required 'id' parameter
+            Guid.NewGuid(),
             dto.Cnpj,
             dto.Nome,
             dto.FaturamentoMensal,
-            Enum.Parse<RamoAtividade>(dto.Ramo, ignoreCase: true) // Convert string to enum
+            (RamoAtividade)dto.Ramo
         );
 
         await _empresaRepository.CadastrarEmpresaAsync(empresa);
@@ -33,13 +39,14 @@ public class EmpresaService
             Cnpj = empresa.Cnpj,
             Nome = empresa.Nome,
             FaturamentoMensal = empresa.FaturamentoMensal,
-            Ramo = empresa.Ramo.ToString()
+            Ramo = empresa.Ramo.ToString(),
+            Limite = empresa.GetLimite()
         };
     }
 
     public async Task<EmpresaDto?> ObterEmpresaPorId(Guid id)
     {
-        var empresa = await _empresaRepository.ObterEmpresaPorIdAsync (id);
+        var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(id);
 
         if (empresa == null) return null;
 
@@ -50,7 +57,7 @@ public class EmpresaService
             Nome = empresa.Nome,
             FaturamentoMensal = empresa.FaturamentoMensal,
             Ramo = empresa.Ramo.ToString(),
-            Limite = empresa.Limite
+            Limite = empresa.GetLimite()
         };
     }
 }

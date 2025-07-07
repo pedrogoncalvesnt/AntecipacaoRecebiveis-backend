@@ -1,10 +1,9 @@
-﻿namespace AntecipacaoRecebiveis.Application.DTOs;
-public class NotaFiscalDto
+﻿namespace AntecipacaoRecebiveis.Domain.DTOs;
+
+public class CriarNotaFiscalDto
 {
-    public Guid Id { get; set; }
     public Guid EmpresaId { get; set; }
     public string? Numero { get; set; }
     public decimal Valor { get; set; }
     public DateTime DataVencimento { get; set; }
-    public Guid? CarrinhoId { get; set; }
 }

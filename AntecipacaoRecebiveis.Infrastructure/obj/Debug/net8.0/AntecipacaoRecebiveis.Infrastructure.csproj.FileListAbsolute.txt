@@ -16,3 +16,5 @@ C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis
 C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Infrastructure\obj\Debug\net8.0\refint\AntecipacaoRecebiveis.Infrastructure.dll
 C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Infrastructure\obj\Debug\net8.0\AntecipacaoRecebiveis.Infrastructure.pdb
 C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Infrastructure\obj\Debug\net8.0\ref\AntecipacaoRecebiveis.Infrastructure.dll
+C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Infrastructure\bin\Debug\net8.0\AntecipacaoRecebiveis.Infrastructure.runtimeconfig.json
+C:\Users\pedro\Documents\dev\AntecipacaoRecebiveis-backend\AntecipacaoRecebiveis.Infrastructure\obj\Debug\net8.0\AntecipacaoRecebiveis.Infrastructure.genruntimeconfig.cache

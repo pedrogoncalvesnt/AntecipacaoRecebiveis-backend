@@ -16,7 +16,6 @@ public class Empresa
     public string? Nome { get; set; }
     public decimal FaturamentoMensal { get; set; }
     public RamoAtividade Ramo { get; set; }
-    public decimal Limite => GetLimite();
 
     public decimal GetLimite()
     {

@@ -1,10 +1,12 @@
-﻿using AntecipacaoRecebiveis.Application.DTOs;
+﻿using AntecipacaoRecebiveis.Domain.DTOs;
 using AntecipacaoRecebiveis.Domain.Entities;
 using AntecipacaoRecebiveis.Domain.Interfaces.Data;
 using AntecipacaoRecebiveis.Domain.Interfaces.Repositories;
+using AntecipacaoRecebiveis.Domain.Interfaces.Services;
 
 namespace AntecipacaoRecebiveis.Application.Services;
-public class NotaFiscalService
+
+public class NotaFiscalService : INotaFiscalService
 {
     private readonly INotaFiscalRepository _NFRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -18,8 +20,8 @@ public class NotaFiscalService
     {
         var nota = new NotaFiscal(
             Guid.NewGuid(),
-            Guid.NewGuid(),
-            dto.Numero, // Assuming dto contains EmpresaId   
+            dto.EmpresaId, // incompleto na relação de nota -> empresa e inserção de nota
+            dto.Numero,
             dto.Valor,
             dto.DataVencimento
         );

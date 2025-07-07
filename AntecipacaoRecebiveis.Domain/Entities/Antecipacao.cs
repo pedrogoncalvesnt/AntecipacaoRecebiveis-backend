@@ -14,7 +14,7 @@ public class Antecipacao
     public decimal Total => NotasFiscais?.Sum(x => x.Valor) ?? 0;
     public bool AdicionaAoCarrinho(NotaFiscal nota) // considerar result patterns para retorno de sucesso ou falha
     {
-        if(Total + nota.Valor > Empresa?.Limite) // tentando sacar acima do saldo
+        if(Total + nota.Valor > Empresa?.GetLimite()) // tentando sacar acima do saldo
         {
             return false;
         }

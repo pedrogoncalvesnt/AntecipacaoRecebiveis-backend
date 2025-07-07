@@ -18,7 +18,7 @@ public class AppDbContext : DbContext
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Cnpj).IsRequired().HasMaxLength(18);
             entity.Property(e => e.Nome).IsRequired();
-            entity.Property(e => e.FaturamentoMensal).IsRequired();
+            entity.Property(e => e.FaturamentoMensal).IsRequired().HasPrecision(18, 2);
             entity.Property(e => e.Ramo).IsRequired();
         });
 
@@ -26,7 +26,7 @@ public class AppDbContext : DbContext
         {
             entity.HasKey(n => n.Id);
             entity.Property(n => n.Numero).IsRequired();
-            entity.Property(n => n.Valor).IsRequired();
+            entity.Property(n => n.Valor).IsRequired().HasPrecision(18,2);
             entity.Property(n => n.DataVencimento).IsRequired();
 
             entity.HasOne(n => n.Empresa)

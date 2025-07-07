@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AntecipacaoRecebiveis.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+035f3db22ca88a3aaf5d73f26463f3f2c4169edf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+08b079369e0edbd28163627e5ce84371bfaa7043")]
 [assembly: System.Reflection.AssemblyProductAttribute("AntecipacaoRecebiveis.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AntecipacaoRecebiveis.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
