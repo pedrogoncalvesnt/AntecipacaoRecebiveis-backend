@@ -1,14 +1,29 @@
-﻿namespace AntecipacaoRecebiveis.Domain.Entities;
+﻿using AntecipacaoRecebiveis.Domain.DTOs;
+
+namespace AntecipacaoRecebiveis.Domain.Entities;
 
 public class NotaFiscal
 {
-    public NotaFiscal(Guid id, Guid empresaId, string? numero, decimal valor, DateTime dataVencimento)
+    public NotaFiscal(Guid id, Guid empresaId, string? numero, decimal valor, DateTime dataVencimento, Guid? carrinhoId)
     {
         Id = id;
         EmpresaId = empresaId;
         Numero = numero;
         Valor = valor;
         DataVencimento = dataVencimento;
+        CarrinhoId = carrinhoId;
+    }
+
+    public static NotaFiscal FromDto(NotaFiscalDto dto)
+    {
+        return new NotaFiscal(
+            dto.Id,
+            dto.EmpresaId,
+            dto.Numero,
+            dto.Valor,
+            dto.DataVencimento,
+            dto.CarrinhoId
+        );
     }
 
     public Guid Id { get; private set; }

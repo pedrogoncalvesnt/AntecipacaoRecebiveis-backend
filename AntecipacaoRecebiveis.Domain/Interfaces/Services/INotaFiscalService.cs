@@ -1,10 +1,11 @@
 ﻿using AntecipacaoRecebiveis.Domain.DTOs;
+using AntecipacaoRecebiveis.Domain.Entities;
 
 namespace AntecipacaoRecebiveis.Domain.Interfaces.Services
 {
     public interface INotaFiscalService
     {
-        Task<NotaFiscalDto> CriarNotaFiscal(CriarNotaFiscalDto dto);
-        Task<NotaFiscalDto?> ObterNFPorId(Guid id);
+        Task<NotaFiscalDto> CriarNotaFiscal(NotaFiscalDto dto);
+        Task<NotaFiscal?> ObterNFPorId(Guid id);
     }
 }

@@ -16,44 +16,29 @@ public class NotaFiscalService : INotaFiscalService
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<NotaFiscalDto> CriarNotaFiscal(CriarNotaFiscalDto dto)
+    public async Task<NotaFiscalDto> CriarNotaFiscal(NotaFiscalDto dto)
     {
-        var nota = new NotaFiscal(
+        var notaFiscalDto = new NotaFiscalDto(
             Guid.NewGuid(),
             dto.EmpresaId, // incompleto na relação de nota -> empresa e inserção de nota
             dto.Numero,
             dto.Valor,
-            dto.DataVencimento
+            dto.DataVencimento,
+            dto.CarrinhoId
         );
 
-        await _NFRepository.CadastrarNFAsync(nota);
+        await _NFRepository.CadastrarNFAsync(notaFiscalDto);
         await _unitOfWork.SaveChangesAsync();
 
-        return new NotaFiscalDto
-        {
-            Id = nota.Id,
-            EmpresaId = nota.EmpresaId,
-            Numero = nota.Numero,
-            Valor = nota.Valor,
-            DataVencimento = nota.DataVencimento,
-            CarrinhoId = nota.CarrinhoId ?? null
-        };
+        return notaFiscalDto;
     }
 
-    public async Task<NotaFiscalDto?> ObterNFPorId(Guid id)
+    public async Task<NotaFiscal?> ObterNFPorId(Guid id)
     {
-        var nota = await _NFRepository.ObterNFPorIdAsync(id);
+        var notaFiscal = await _NFRepository.ObterNFPorIdAsync(id);
 
-        if (nota == null) return null;
+        if (notaFiscal == null) return null;
 
-        return new NotaFiscalDto
-        {
-            Id = nota.Id,
-            EmpresaId = nota.EmpresaId,
-            Numero = nota.Numero,
-            Valor = nota.Valor,
-            DataVencimento = nota.DataVencimento,
-            CarrinhoId = nota.CarrinhoId ?? null
-        };
+        return notaFiscal;
     }
 }

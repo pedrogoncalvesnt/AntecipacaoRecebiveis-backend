@@ -16,48 +16,33 @@ public class EmpresaService : IEmpresaService
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<EmpresaDto> CriarEmpresa(CriarEmpresaDto dto)
+    public async Task<EmpresaDto> CriarEmpresa(EmpresaDto dto)
     {
 
         if (!Enum.IsDefined(typeof(RamoAtividade), dto.Ramo))
             throw new ArgumentException("Ramo inválido");
 
-        var empresa = new Empresa(
+        var empresaDto = new EmpresaDto(
             Guid.NewGuid(),
             dto.Cnpj,
             dto.Nome,
             dto.FaturamentoMensal,
-            (RamoAtividade)dto.Ramo
+            dto.Ramo,
+            dto.Limite
         );
 
-        await _empresaRepository.CadastrarEmpresaAsync(empresa);
+        await _empresaRepository.CadastrarEmpresaAsync(empresaDto);
         await _unitOfWork.SaveChangesAsync();
 
-        return new EmpresaDto
-        {
-            Id = empresa.Id,
-            Cnpj = empresa.Cnpj,
-            Nome = empresa.Nome,
-            FaturamentoMensal = empresa.FaturamentoMensal,
-            Ramo = empresa.Ramo.ToString(),
-            Limite = empresa.GetLimite()
-        };
+        return empresaDto;
     }
 
-    public async Task<EmpresaDto?> ObterEmpresaPorId(Guid id)
+    public async Task<Empresa?> ObterEmpresaPorId(Guid id)
     {
         var empresa = await _empresaRepository.ObterEmpresaPorIdAsync(id);
 
         if (empresa == null) return null;
 
-        return new EmpresaDto
-        {
-            Id = empresa.Id,
-            Cnpj = empresa.Cnpj,
-            Nome = empresa.Nome,
-            FaturamentoMensal = empresa.FaturamentoMensal,
-            Ramo = empresa.Ramo.ToString(),
-            Limite = empresa.GetLimite()
-        };
+        return empresa;
     }
 }

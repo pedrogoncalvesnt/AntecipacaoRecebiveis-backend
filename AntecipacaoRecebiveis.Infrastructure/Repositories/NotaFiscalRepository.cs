@@ -1,4 +1,5 @@
-﻿using AntecipacaoRecebiveis.Domain.Entities;
+﻿using AntecipacaoRecebiveis.Domain.DTOs;
+using AntecipacaoRecebiveis.Domain.Entities;
 using AntecipacaoRecebiveis.Domain.Interfaces.Repositories;
 namespace AntecipacaoRecebiveis.Infrastructure.Repositories;
 
@@ -9,10 +10,12 @@ public class NotaFiscalRepository : INotaFiscalRepository
     {
         _context = context;
     }
-    public async Task<NotaFiscal?> CadastrarNFAsync(NotaFiscal nota)
+    public async Task<NotaFiscal?> CadastrarNFAsync(NotaFiscalDto notaFiscalDto)
     {
-        await _context.NotasFiscais.AddAsync(nota);
-        return nota;
+        var notaFiscal = NotaFiscal.FromDto(notaFiscalDto);
+
+        await _context.NotasFiscais.AddAsync(notaFiscal);
+        return notaFiscal;
     }
     public async Task<NotaFiscal?> ObterNFPorIdAsync(Guid id)
     {

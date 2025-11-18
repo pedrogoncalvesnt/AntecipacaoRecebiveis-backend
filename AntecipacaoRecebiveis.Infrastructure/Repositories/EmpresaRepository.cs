@@ -1,4 +1,5 @@
-﻿using AntecipacaoRecebiveis.Domain.Entities;
+﻿using AntecipacaoRecebiveis.Domain.DTOs;
+using AntecipacaoRecebiveis.Domain.Entities;
 using AntecipacaoRecebiveis.Domain.Interfaces.Repositories;
 namespace AntecipacaoRecebiveis.Infrastructure.Repositories;
 
@@ -9,11 +10,14 @@ public class EmpresaRepository : IEmpresaRepository
     {
         _context = context;
     }
-    public async Task<Empresa?> CadastrarEmpresaAsync(Empresa empresa)
+    public async Task<Empresa> CadastrarEmpresaAsync(EmpresaDto dto)
     {
+        var empresa = Empresa.FromDto(dto);
+
         await _context.Empresas.AddAsync(empresa);
         return empresa;
     }
+
     public async Task<Empresa?> ObterEmpresaPorIdAsync(Guid id)
     {
         return await _context.Empresas.FindAsync(id);

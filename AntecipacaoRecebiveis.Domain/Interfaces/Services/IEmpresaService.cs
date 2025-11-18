@@ -1,10 +1,11 @@
 ﻿using AntecipacaoRecebiveis.Domain.DTOs;
+using AntecipacaoRecebiveis.Domain.Entities;
 
 namespace AntecipacaoRecebiveis.Domain.Interfaces.Services
 {
     public interface IEmpresaService
     {
-        Task<EmpresaDto> CriarEmpresa(CriarEmpresaDto dto);
-        Task<EmpresaDto?> ObterEmpresaPorId(Guid id);
+        Task<EmpresaDto> CriarEmpresa(EmpresaDto dto);
+        Task<Empresa?> ObterEmpresaPorId(Guid id);
     }
 }

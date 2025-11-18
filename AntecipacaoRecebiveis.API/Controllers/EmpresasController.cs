@@ -16,7 +16,7 @@ public class EmpresasController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CadastraEmpresa([FromBody] CriarEmpresaDto dto)
+    public async Task<IActionResult> CadastraEmpresa([FromBody] EmpresaDto dto)
     {
         var empresa = await _empresaService.CriarEmpresa(dto);
         return CreatedAtAction(nameof(ObterEmpresaPorId), new { id = empresa.Id }, empresa);
