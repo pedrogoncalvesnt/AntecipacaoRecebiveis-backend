@@ -1,4 +1,4 @@
-﻿using AntecipacaoRecebiveis.Domain.Entities;
+﻿using AntecipacaoRecebiveis.Domain.Enums;
 
 namespace AntecipacaoRecebiveis.Domain.DTOs;
 public class EmpresaDto

@@ -1,4 +1,5 @@
 ﻿namespace AntecipacaoRecebiveis.Domain.DTOs;
+
 public class NotaFiscalDto
 {
     public NotaFiscalDto(Guid id, Guid empresaId, string? numero, decimal valor, DateTime dataVencimento, Guid? carrinhoId)

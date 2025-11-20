@@ -1,5 +1,5 @@
-﻿using AntecipacaoRecebiveis.Domain.DTOs;
-using AntecipacaoRecebiveis.Domain.Interfaces.Services;
+﻿using AntecipacaoRecebiveis.Domain.Interfaces.Services;
+using AntecipacaoRecebiveis.Domain.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AntecipacaoRecebiveis.API.Controllers;
@@ -16,10 +16,10 @@ public class NotasFiscaisController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CadastraNf([FromBody] CriarNotaFiscalDto dto)
+    public async Task<IActionResult> CadastraNf([FromBody] CriarNotaFiscalRequest request)
     {
-        var nota = await _nfService.CriarNotaFiscal(dto);
-        return CreatedAtAction(nameof(ObterNotaPorId), new { id = nota.Id }, nota);
+        var nota = await _nfService.CriarNotaFiscal(request);
+        return CreatedAtAction(nameof(ObterNotaPorId), new { id = nota.EmpresaId }, nota);
     }
 
     [HttpGet("{id:guid}")]

@@ -1,6 +1,6 @@
-﻿using AntecipacaoRecebiveis.Domain.DTOs;
-using AntecipacaoRecebiveis.Domain.Entities;
+﻿using AntecipacaoRecebiveis.Domain.Entities;
 using AntecipacaoRecebiveis.Domain.Interfaces.Repositories;
+using Microsoft.EntityFrameworkCore;
 namespace AntecipacaoRecebiveis.Infrastructure.Repositories;
 
 public class NotaFiscalRepository : INotaFiscalRepository
@@ -10,15 +10,42 @@ public class NotaFiscalRepository : INotaFiscalRepository
     {
         _context = context;
     }
-    public async Task<NotaFiscal?> CadastrarNFAsync(NotaFiscalDto notaFiscalDto)
+    public async Task<NotaFiscal> CadastrarAsync(NotaFiscal notaFiscal)
     {
-        var notaFiscal = NotaFiscal.FromDto(notaFiscalDto);
-
         await _context.NotasFiscais.AddAsync(notaFiscal);
         return notaFiscal;
     }
-    public async Task<NotaFiscal?> ObterNFPorIdAsync(Guid id)
+    public async Task<NotaFiscal?> ObterPorIdAsync(Guid id)
     {
         return await _context.NotasFiscais.FindAsync(id);
+    }
+
+    public async Task<IEnumerable<NotaFiscal>> ObterPorCarrinhoIdAsync(Guid carrinhoId)
+    {
+        return await _context.NotasFiscais
+            .Where(n => n.CarrinhoId.HasValue && n.CarrinhoId.Value == carrinhoId)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<NotaFiscal>> ObterPorEmpresaIdAsync(Guid empresaId)
+    {
+        return await _context.NotasFiscais
+            .Where(n => n.EmpresaId == empresaId)
+            .ToListAsync();
+    }
+
+    public async Task<decimal> SomarValorPorCarrinhoIdAsync(Guid carrinhoId)
+    {
+        var soma = await _context.NotasFiscais
+            .Where(n => n.CarrinhoId.HasValue && n.CarrinhoId.Value == carrinhoId)
+            .SumAsync(n => (decimal?)n.Valor);
+
+        return soma ?? 0m; // retorna 0 se não houver notas fiscais
+    }
+
+    public Task AtualizarAsync(NotaFiscal nota)
+    {
+        _context.NotasFiscais.Update(nota);
+        return Task.CompletedTask;
     }
 }

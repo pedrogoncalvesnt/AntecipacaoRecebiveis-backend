@@ -1,6 +1,7 @@
 ﻿using AntecipacaoRecebiveis.Domain.DTOs;
 using AntecipacaoRecebiveis.Domain.Entities;
 using AntecipacaoRecebiveis.Domain.Interfaces.Repositories;
+using AntecipacaoRecebiveis.Domain.Requests;
 namespace AntecipacaoRecebiveis.Infrastructure.Repositories;
 
 public class EmpresaRepository : IEmpresaRepository
@@ -10,9 +11,9 @@ public class EmpresaRepository : IEmpresaRepository
     {
         _context = context;
     }
-    public async Task<Empresa> CadastrarEmpresaAsync(EmpresaDto dto)
+    public async Task<Empresa> CadastrarEmpresaAsync(CriarEmpresaRequest request)
     {
-        var empresa = Empresa.FromDto(dto);
+        var empresa = Empresa.FromRequest(request);
 
         await _context.Empresas.AddAsync(empresa);
         return empresa;

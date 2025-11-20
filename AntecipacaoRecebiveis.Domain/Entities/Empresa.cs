@@ -1,39 +1,49 @@
 ﻿using AntecipacaoRecebiveis.Domain.DTOs;
+using AntecipacaoRecebiveis.Domain.Enums;
+using AntecipacaoRecebiveis.Domain.Requests;
 
 namespace AntecipacaoRecebiveis.Domain.Entities;
 
-public class Empresa
+public class Empresa : EntityBase
 {
-    public Empresa(Guid id, string cnpj, string nome, decimal faturamentoMensal, RamoAtividade ramo, decimal limite)
+    public Empresa(string cnpj, string nome, decimal faturamentoMensal, RamoAtividade ramo)
     {
-        Id = id;
         Cnpj = cnpj; // adicionar validação de número de campos
         Nome = nome;
         FaturamentoMensal = faturamentoMensal;
         Ramo = ramo;
-        Limite = limite;
     }
 
-    public static Empresa FromDto(EmpresaDto dto)
+    public static Empresa FromRequest(CriarEmpresaRequest request)
     {
         return new Empresa(
-            dto.Id,
-            dto.Cnpj,
-            dto.Nome,
-            dto.FaturamentoMensal,
-            dto.Ramo,
-            dto.Limite
+            request.Cnpj,
+            request.Nome,
+            request.FaturamentoMensal,
+            request.Ramo
         );
     }
 
-    public Guid Id { get; set; }
+    public EmpresaDto MapToDto()
+    {
+        return new EmpresaDto(
+            Id,
+            Cnpj,
+            Nome,
+            FaturamentoMensal,
+            Ramo,
+            Limite
+        );
+    }
+
     public string Cnpj { get; set; }
     public string Nome { get; set; }
     public decimal FaturamentoMensal { get; set; }
     public RamoAtividade Ramo { get; set; }
-    public decimal Limite { get; set; }
+    public decimal Limite => GetLimite();
+    public List<NotaFiscal>? NotasFiscais { get; set; }
 
-    public decimal GetLimite()
+    private decimal GetLimite()
     {
         var limite = 0m;
         if (FaturamentoMensal >= 10000 && FaturamentoMensal <= 50000) limite = FaturamentoMensal / 2;

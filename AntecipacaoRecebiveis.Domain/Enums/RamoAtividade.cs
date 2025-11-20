@@ -1,4 +1,4 @@
-﻿namespace AntecipacaoRecebiveis.Domain.Entities;
+﻿namespace AntecipacaoRecebiveis.Domain.Enums;
 
 public enum RamoAtividade
 {

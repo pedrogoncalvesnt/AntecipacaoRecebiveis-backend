@@ -1,8 +1,10 @@
 ﻿using AntecipacaoRecebiveis.Domain.DTOs;
 using AntecipacaoRecebiveis.Domain.Entities;
+using AntecipacaoRecebiveis.Domain.Enums;
 using AntecipacaoRecebiveis.Domain.Interfaces.Data;
 using AntecipacaoRecebiveis.Domain.Interfaces.Repositories;
 using AntecipacaoRecebiveis.Domain.Interfaces.Services;
+using AntecipacaoRecebiveis.Domain.Requests;
 
 namespace AntecipacaoRecebiveis.Application.Services;
 
@@ -16,25 +18,16 @@ public class EmpresaService : IEmpresaService
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<EmpresaDto> CriarEmpresa(EmpresaDto dto)
+    public async Task<EmpresaDto> CriarEmpresa(CriarEmpresaRequest request)
     {
 
-        if (!Enum.IsDefined(typeof(RamoAtividade), dto.Ramo))
+        if (!Enum.IsDefined(typeof(RamoAtividade), request.Ramo))
             throw new ArgumentException("Ramo inválido");
 
-        var empresaDto = new EmpresaDto(
-            Guid.NewGuid(),
-            dto.Cnpj,
-            dto.Nome,
-            dto.FaturamentoMensal,
-            dto.Ramo,
-            dto.Limite
-        );
-
-        await _empresaRepository.CadastrarEmpresaAsync(empresaDto);
+        var empresa = await _empresaRepository.CadastrarEmpresaAsync(request);
         await _unitOfWork.SaveChangesAsync();
 
-        return empresaDto;
+        return empresa.MapToDto();
     }
 
     public async Task<Empresa?> ObterEmpresaPorId(Guid id)

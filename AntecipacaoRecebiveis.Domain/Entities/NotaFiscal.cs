@@ -1,12 +1,11 @@
-﻿using AntecipacaoRecebiveis.Domain.DTOs;
+﻿using AntecipacaoRecebiveis.Domain.Requests;
 
 namespace AntecipacaoRecebiveis.Domain.Entities;
 
-public class NotaFiscal
+public class NotaFiscal : EntityBase
 {
-    public NotaFiscal(Guid id, Guid empresaId, string? numero, decimal valor, DateTime dataVencimento, Guid? carrinhoId)
+    public NotaFiscal(Guid empresaId, string? numero, decimal valor, DateTime dataVencimento, Guid? carrinhoId)
     {
-        Id = id;
         EmpresaId = empresaId;
         Numero = numero;
         Valor = valor;
@@ -14,10 +13,9 @@ public class NotaFiscal
         CarrinhoId = carrinhoId;
     }
 
-    public static NotaFiscal FromDto(NotaFiscalDto dto)
+    public static NotaFiscal FromRequest(CriarNotaFiscalRequest dto)
     {
         return new NotaFiscal(
-            dto.Id,
             dto.EmpresaId,
             dto.Numero,
             dto.Valor,
@@ -26,7 +24,6 @@ public class NotaFiscal
         );
     }
 
-    public Guid Id { get; private set; }
     public Guid EmpresaId { get; private set; }
     public string? Numero { get; private set; }
     public decimal Valor { get; private set; }
