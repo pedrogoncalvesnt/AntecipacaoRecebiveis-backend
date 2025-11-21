@@ -1,6 +1,4 @@
-﻿using AntecipacaoRecebiveis.Application.Services;
-using AntecipacaoRecebiveis.Domain.DTOs;
-using AntecipacaoRecebiveis.Domain.Interfaces.Services;
+﻿using AntecipacaoRecebiveis.Domain.Interfaces.Services;
 using AntecipacaoRecebiveis.Domain.Requests;
 using Microsoft.AspNetCore.Mvc;
 
