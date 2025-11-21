@@ -33,39 +33,24 @@ public class NotaFiscalService : INotaFiscalService
         return nota == null ? null : MapToDto(nota);
     }
 
-    public async Task<NotaFiscalDto?> AdicionarAoCarrinhoAsync(Guid empresaId, CriarNotaFiscalRequest request)
+    public async Task<NotaFiscalDto?> AdicionarNotaExistenteAoCarrinhoAsync(Guid empresaId, Guid notaId)
     {
         var empresa = await _EmpresaRepository.ObterEmpresaPorIdAsync(empresaId);
         if (empresa == null) return null;
 
-        // Carrega nota existente ou cria nova sem carrinho
-        var nota = NotaFiscal.FromRequest(request);
-
+        var nota = await _NFRepository.ObterPorIdAsync(notaId);
+        if (nota == null) return null;
         if (!nota.EstaValida()) return null;
         if (nota.Antecipada) return null;
+        if (nota.CarrinhoId.HasValue) return null; // já em carrinho
 
         var totalAtual = await _NFRepository.SomarValorPorCarrinhoIdAsync(empresaId);
-        var limite = empresa.Limite;
-        if (totalAtual + nota.Valor > limite) return null;
+        if (totalAtual + nota.Valor > empresa.Limite) return null;
 
-        var existente = await _NFRepository.ObterPorIdAsync(nota.Id);
-        if (existente == null)
-        {
-            // Criar nota sem carrinho e depois associar
-            nota.CarrinhoId = empresaId;
-            var created = await _NFRepository.CadastrarAsync(nota);
-            await _unitOfWork.SaveChangesAsync();
-            return MapToDto(created);
-        }
-        else
-        {
-            if (existente.CarrinhoId.HasValue) return null; // já em outro carrinho
-            if (!existente.EstaValida() || existente.Antecipada) return null;
-            existente.CarrinhoId = empresaId; // associar agora
-            await _NFRepository.AtualizarAsync(existente);
-            await _unitOfWork.SaveChangesAsync();
-            return MapToDto(existente);
-        }
+        nota.CarrinhoId = empresaId;
+        await _NFRepository.AtualizarAsync(nota);
+        await _unitOfWork.SaveChangesAsync();
+        return MapToDto(nota);
     }
 
     public async Task<bool> RemoverDoCarrinhoAsync(Guid empresaId, Guid notaId)

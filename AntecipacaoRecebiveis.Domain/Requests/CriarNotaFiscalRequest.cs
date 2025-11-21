@@ -4,6 +4,5 @@ public sealed record CriarNotaFiscalRequest(
     Guid EmpresaId,
     string? Numero,
     decimal Valor,
-    DateTime DataVencimento,
-    Guid? CarrinhoId
+    DateTime DataVencimento
 );
