@@ -11,5 +11,6 @@ namespace AntecipacaoRecebiveis.Domain.Interfaces.Services
         Task<NotaFiscalDto?> AdicionarAoCarrinhoAsync(Guid empresaId, CriarNotaFiscalRequest notaFiscalDto);
         Task<bool> RemoverDoCarrinhoAsync(Guid empresaId, Guid notaId);
         Task<IEnumerable<NotaFiscalDto>> ObterCarrinhoAsync(Guid empresaId);
+        Task<EfetivacaoAntecipacaoResponse> EfetivarAntecipacaoAsync(Guid empresaId);
     }
 }

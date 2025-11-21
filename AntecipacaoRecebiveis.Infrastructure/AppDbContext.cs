@@ -20,6 +20,11 @@ public class AppDbContext : DbContext
             entity.Property(e => e.Nome).IsRequired();
             entity.Property(e => e.FaturamentoMensal).IsRequired().HasPrecision(18, 2);
             entity.Property(e => e.Ramo).IsRequired();
+
+            entity.HasMany(e => e.NotasFiscais)
+                  .WithOne(n => n.Empresa!)
+                  .HasForeignKey(n => n.EmpresaId)
+                  .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<NotaFiscal>(entity =>
@@ -28,9 +33,10 @@ public class AppDbContext : DbContext
             entity.Property(n => n.Numero).IsRequired();
             entity.Property(n => n.Valor).IsRequired().HasPrecision(18,2);
             entity.Property(n => n.DataVencimento).IsRequired();
+            entity.Property(n => n.Antecipada).IsRequired();
 
             entity.HasOne(n => n.Empresa)
-                  .WithMany()
+                  .WithMany(e => e.NotasFiscais)
                   .HasForeignKey(n => n.EmpresaId)
                   .OnDelete(DeleteBehavior.Cascade);
         });

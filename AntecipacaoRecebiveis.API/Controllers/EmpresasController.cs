@@ -1,4 +1,5 @@
 ﻿using AntecipacaoRecebiveis.Application.Services;
+using AntecipacaoRecebiveis.Domain.DTOs;
 using AntecipacaoRecebiveis.Domain.Interfaces.Services;
 using AntecipacaoRecebiveis.Domain.Requests;
 using Microsoft.AspNetCore.Mvc;
@@ -84,4 +85,20 @@ public class EmpresasController : ControllerBase
         var itensDto = await _notaFiscalService.ObterCarrinhoAsync(empresaId);
         return Ok(itensDto);
     }
+
+    [HttpPost("Efetivar-Antecipacao")] // POST api/empresas/Efetivar-Antecipacao?empresaId=...
+    public async Task<IActionResult> EfetivarAntecipacao([FromQuery] Guid empresaId)
+    {
+        var result = await _notaFiscalService.EfetivarAntecipacaoAsync(empresaId);
+        if (result is { }) return Ok(result);
+        return BadRequest();
+    }
 }
+
+/* POST EMPRESAS/EFETIVAR-ANTECIPACAO: passar empresa ID, retornar "empresa": "Nome da Empresa",
+  "cnpj": "XXXXXXXXXXXXXX",
+  "limite": 50000,
+  "notas_fiscais": []
+
+  alterar flag nota fiscal antecipada para true
+ */

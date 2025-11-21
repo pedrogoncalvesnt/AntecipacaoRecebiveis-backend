@@ -10,17 +10,18 @@ public class NotaFiscal : EntityBase
         Numero = numero;
         Valor = valor;
         DataVencimento = dataVencimento;
-        CarrinhoId = carrinhoId;
+        CarrinhoId = carrinhoId; // será sempre null na criação normal
     }
 
     public static NotaFiscal FromRequest(CriarNotaFiscalRequest dto)
     {
+        // Ignorar CarrinhoId vindo do request na criação inicial
         return new NotaFiscal(
             dto.EmpresaId,
             dto.Numero,
             dto.Valor,
             dto.DataVencimento,
-            dto.CarrinhoId
+            null // força criação sem carrinho
         );
     }
 
@@ -30,6 +31,9 @@ public class NotaFiscal : EntityBase
     public DateTime DataVencimento { get; private set; }
     public virtual Empresa? Empresa { get; private set; }
     public Guid? CarrinhoId { get; set; }
+    public bool Antecipada { get; private set; } = false;
+
+    public void MarcarComoAntecipada() => Antecipada = true;
 
     // Validação para cadastro de Nota Fiscal
     public bool EstaValida() => DataVencimento > DateTime.UtcNow;
